@@ -2,4 +2,46 @@
 //-- GD1T
 
 GAME DESIGN DISCUSSION
--to be edited with conent.
+"In-Game Tutorial Decisions"
+
+This is interesting because an often overlooked
+aspect in video game making is tutorials. Or 
+specifically, how the player learns how to play
+the game and; thus, immerse himself/herself
+in the game's world.
+
+In the forum, most of the focus was on making
+the game 'simple' (but not overly so that a player
+could breeze through the entire game without so
+much as batting an eyelash) to learn. 
+
+There was an answer that opposed the idea that a
+game should give a hint after a player dies. It is
+a valid point because oft times I felt a little stupid
+after losing a game that tells me I should have done
+this to avoid such a mistake.
+
+Another point that was raised was teaching the game
+through little quests that enabled the player to explore
+the game controls and mechanics without having to 
+read through lengthy tutorials or sit through voice-overs
+of some sort. Both of which are boring and would
+often times prompt a player to rapidly press the 'next
+button' or select the 'skip dialogue' option.
+
+Considering players with a fairly short patience, I 
+think it is wise to keep tutorials interactive so that
+the player learns while actively participating in the 
+learning process.
+
+Another interesting point was to allow game
+testers to play the game and see in which areas they
+got confused or lost in and patterning a tutorial to
+remedy the learning curve present in the game.
+
+I think this is a very interesting discussion 
+because one day I hope to make a game that
+will be interestingly complicated but not too 
+complicated that players would be too frustrated
+learning which way is up and which way is down to
+play.
