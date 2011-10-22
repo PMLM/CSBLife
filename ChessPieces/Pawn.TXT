@@ -1,0 +1,185 @@
+#define _USE_MATH_DEFINES
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <conio.h>
+#include <cmath>
+#include <math.h>
+
+/* OpenGL Library */
+#include <glut.h>
+
+float AngleY = 0.0;
+float AngleX = 0.0;
+float ConeX = 0.0;
+float ConeY = 0.0;
+float ConeZ = 0.0;
+float PI = 3.1416;
+float Black[2] = {1.0, 1.0}; /*CONTROL COLOR... lolidek, is this relevant to your code?!*/
+
+/* Contains all drawings and animations */
+void GameScene()
+{
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, Black); /*CONTROL COLOR OF CHESS PIECE, lolidek wtf.*/
+  glPushMatrix();
+
+  /* BEGIN OBJECT CODE */
+
+  glPushMatrix();
+		glTranslatef(0.0, 1.0, 0.0);
+		glColor3f(1.0, 0.0, 0.0);
+		glutSolidSphere(0.5, 50,50);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(0.0, 0.6, 0.0);
+		glRotatef(-90.0, 1.0, 0.0, 0.0);
+		glutSolidTorus(0.2, 0.2, 100, 100);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(0.0, -0.6, 0.0);
+		glRotatef(-90.0, 1.0, 0.0, 0.0);
+		glutSolidCone(0.6, 1.8, 30, 50);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(0.0, -0.6, 0.0);
+		glRotatef(-90.0, 1.0, 0.0, 0.0);
+		glutSolidTorus(0.5, 0.1, 100, 100);
+	glPopMatrix();
+
+	glPushMatrix();
+		glTranslatef(0.0, -1.4, 0.0);
+		glRotatef(-90.0, 1.0, 0.0, 0.0);
+		glutSolidCone(0.7, 1.8, 30, 50);
+	glPopMatrix();
+  /*END OBJECT CODE*/
+  glutSwapBuffers();
+}
+
+
+
+
+
+/* Controls framerate */
+void Timer(int extra)
+{
+  glutPostRedisplay();
+  glutTimerFunc(10, Timer, extra);
+}
+
+/* Controls the camera */
+void ResizeWindow(int w, int h)
+{
+  float ratio = 1.0 * w / h;
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+
+  glViewport(0, 0, w, h);
+  
+  gluPerspective(30.0, ratio, 1, 1000);
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  gluLookAt(0.0, 0.0, 20.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+}
+
+void Keys(unsigned char key, int x, int y)
+{
+  switch(key)
+  {
+    case 'a':
+      /* move cube to the left */
+      //CenterX--;
+
+      ConeX -= 0.3;
+      break;
+
+    case 'd':
+      /* move cube to the right */
+      //CenterX++;
+
+      ConeX += 0.3;
+      break;
+    
+    case 'w':
+      ConeY += 0.3;
+      break;
+
+    case 's':
+      ConeY -= 0.3;
+      break;
+
+case 'i':
+ConeZ -= 0.3;
+break;
+
+case 'k':
+ConeZ +=0.3;
+
+    case 27:
+      exit(0);
+  }
+}
+
+
+void SpecialKeys(int key, int x, int y)
+{
+  switch(key)
+  {
+    case GLUT_KEY_UP:
+      AngleX -= 0.3;
+      break;
+
+    case GLUT_KEY_DOWN:
+      AngleX += 0.3;
+      break;
+
+    case GLUT_KEY_LEFT:
+      AngleY -= 0.3;
+      break;
+
+    case GLUT_KEY_RIGHT:
+      AngleY += 0.3;
+      break;
+  }
+}
+
+/* Main program */
+void main(int argc, char **argv)
+{
+/* OpenGL Setup */
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
+
+/* Setup drawing window */
+  glutInitWindowPosition(0, 0);
+  glutInitWindowSize(800, 600);
+  glutCreateWindow("Hello OpenGL");
+
+  glutReshapeFunc(ResizeWindow);
+
+  glutDisplayFunc(GameScene);
+  //glutIdleFunc(GameScene);
+
+/* Controls animation speed or FrameRate */
+  glutTimerFunc(0, Timer, 0);
+
+/* Enables Depth */
+  glEnable(GL_DEPTH_TEST);
+
+/* Lighting */
+  glEnable(GL_LIGHT0);
+  glEnable(GL_LIGHTING);
+  glEnable(GL_NORMALIZE);
+
+/* Enables keyboard controls */
+  glutKeyboardFunc(Keys);
+  glutSpecialFunc(SpecialKeys);
+
+/* Loops the GameScene */
+  glutMainLoop();
+}
